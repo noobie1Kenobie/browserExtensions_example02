@@ -1,4 +1,11 @@
 (() => {
+  // const debug = true;
+  //
+  // function cout(str) {
+  //   debug ? console.log(str) : null;
+  // }
+  //
+  // cout("{beastify.js:anonymous function} Script executed");
   /**
    * Check and set a global guard variable.
    * If this content script is injected into the same page again,
@@ -15,6 +22,7 @@
    * that image, then insert the node into the document.
    */
   function insertBeast(beastURL) {
+    // cout("{beastify.js:anonymous function:insertBeast} Function executed");
     removeExistingBeasts();
     const beastImage = document.createElement("img");
     beastImage.setAttribute("src", beastURL);
@@ -38,6 +46,10 @@
    * Call "insertBeast()" or "removeExistingBeasts()".
    */
   browser.runtime.onMessage.addListener((message) => {
+    // cout(
+    //   "{beastify.js:anonymous function:addListener anonymous function} Script executed",
+    // );
+    //
     if (message.command === "beastify") {
       insertBeast(message.beastURL);
     } else if (message.command === "reset") {
