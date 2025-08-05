@@ -32,6 +32,7 @@ function listenForClicks() {
      * send a "beastify" message to the content script in the active tab.
      **/
     function beastify(tabs) {
+      cout("[beastify] Choosing beast");
       browser.tabs.insertCSS({ code: hidePage }).then(() => {
         const url = beastNameToURL(e.target.textContent);
         browser.tabs.sendMessage(tabs[0].id, {
@@ -82,6 +83,15 @@ function listenForClicks() {
     }
   });
 }
+
+const debug = true;
+
+function cout(str) {
+  debug ? console.log(str) : null;
+}
+
+// console.log("{choose_beast.js} Loading script");
+cout("{choose_beast} Script loaded");
 
 /*
  * There was an error executing the script.
